@@ -11,33 +11,30 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
-    @IBOutlet weak var leftResultLabel: UILabel!
-    @IBOutlet weak var rightResultLabel: UILabel!
+    @IBOutlet weak var leftResult: UILabel!
+    @IBOutlet weak var rightResult: UILabel!
     @IBOutlet weak var finalResult: UILabel!
     @IBOutlet weak var switch1: UISwitch!
     @IBOutlet weak var switch2: UISwitch!
 
     @IBAction func pushButton(_ sender: UIButton) {
 
-        let leftValue = Int(textField1.text ?? "") ?? 0
-        let rightValue = Int(textField2.text ?? "") ?? 0
+        var leftValue = Int(textField1.text ?? "") ?? 0
+        var rightValue = Int(textField2.text ?? "") ?? 0
 
-        let signedValue1: Int
         if switch1.isOn {
-            signedValue1 = -leftValue
+            leftResult.text = String("\(leftValue)")
         } else {
-            signedValue1 = leftValue
+            leftValue *= -1
+            leftResult.text = String("\(leftValue)")
         }
 
-        let signedValue2: Int
         if switch2.isOn {
-            signedValue2 = -rightValue
+            rightResult.text = String("\(rightValue)")
         } else {
-            signedValue2 = rightValue
+            rightValue *= -1
+            rightResult.text = String("\(rightValue)")
         }
-
-        leftResultLabel.text = String("\(signedValue1)")
-        rightResultLabel.text = String("\(signedValue2)")
-        finalResult.text = String(signedValue1 + signedValue2)
+        finalResult.text = String(leftValue + rightValue)
+      }
     }
-}
